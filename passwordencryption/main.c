@@ -40,6 +40,7 @@ void chars(int i, char enpass[60])
         break;
     }
 }
+
 void encryption(char pass[20])
 {
     int i=0;
@@ -55,8 +56,8 @@ void encryption(char pass[20])
        }
        else
         {
-        i=0;
-       }
+          i=0;
+        }
       if(en>=10)
        {
          j=en/10;
@@ -67,16 +68,14 @@ void encryption(char pass[20])
            j=0;
        }
        k=en;
-
       chars(i, enpass);
       chars(j, enpass);
       chars(k, enpass);
-
     }
     printf("Your Encrypted password is\n%s\n", enpass);
     strcpy(pass, enpass);
-
 }
+
 int dechars(char ch)
 {
     switch(ch)
@@ -113,15 +112,14 @@ int dechars(char ch)
         break;
 
     }
-
 }
+
 void decription(char enpass[60])
 {
     char depass[60]="";
     int l=0;
     while(enpass[l]!='\0')
     {
-
        int i=dechars(enpass[l++]);
        int j=dechars(enpass[l++]);
        int k=dechars(enpass[l++]);
@@ -131,9 +129,9 @@ void decription(char enpass[60])
        strncat(depass, &ch,1);
     }
     strcpy(enpass,depass);
-
     printf("decoded password is %s\n", depass);
 }
+
 void login()
 {
     char id1[60], pass1[60];
@@ -155,7 +153,8 @@ void login()
                     printf("You are logged in!!\nHi %s\n", id1);
                     return;
 
-                }else
+                }
+                else
                 {
                     printf("Incorrect password!!\n");
                 }
@@ -167,7 +166,6 @@ void login()
     {
         printf("Incorrect Id\n");
     }
-
 }
 
 void createacc()
@@ -198,8 +196,4 @@ int main()
         printf("Enter 1-login 2-createaccount 3-stop\n");
         scanf("%d", &check);
     }
-
-
-
-
 }
