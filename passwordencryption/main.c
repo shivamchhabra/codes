@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+char pass[50][60], id[50][60];
+int top=0;
+
 void chars(int i, char enpass[60])
 {
     switch(i)
@@ -127,10 +130,57 @@ void decription(char enpass[60])
        char ch=itoc;
        strncat(depass, &ch,1);
     }
+    strcpy(enpass,depass);
+
     printf("decoded password is %s\n", depass);
+}
+void login()
+{
+    char id1[60], pass1[60];
+    printf("Enter your Id here\n");
+    scanf("%s", &id1);
+    printf("Enter your password please\n");
+    scanf("%s", &pass1);
+    int i=0,count=0;
+    while(i<=top)
+    {
+        if(strcmp(id1,id[i])==0)
+            {
+                count++;
+                printf("before decription your password is %s\n", pass[i]);
+                decription(pass[i]);
+                printf("after decription your password is %s\n", pass[i]);
+                if(strcmp(pass[i],pass1)==0)
+                {
+                    printf("You are logged in!!\nHi %s\n", id1);
+                    return;
 
+                }else
+                {
+                    printf("Incorrect password!!\n");
+                }
+             }
 
+        i++;
+    }
+    if(count==0)
+    {
+        printf("Incorrect Id\n");
+    }
 
+}
+
+void createacc()
+{
+    char id1[60], pass1[60];
+    printf("Enter your Id here\n");
+    scanf("%s", &id1);
+    printf("Enter your password please\n");
+    scanf("%s", &pass1);
+    strcpy(id[top],id1);
+    encryption(pass1);
+    strcpy(pass[top], pass1);
+    top++;
 }
 
 
@@ -138,15 +188,17 @@ void decription(char enpass[60])
 
 int main()
 {
-    int j,k;
-    char pass[60]="", id[20],ch='s';
-    printf("Enter your Id\n");
-    scanf("%s", & id);
-    printf("Enter your password\n");
-    scanf("%s", & pass);
-    //printf("\nid:%s pass:%s\n", id, pass);
-    encryption(pass);
-    decription(pass);
+    int j,k,check;
+    printf("Enter 1-login 2-createaccount 3-stop\n");
+    scanf("%d", &check);
+    while(check!=3)
+    {
+        if(check==1)login() ;
+        if(check==2)createacc();
+        printf("Enter 1-login 2-createaccount 3-stop\n");
+        scanf("%d", &check);
+    }
+
 
 
 
